@@ -1,0 +1,122 @@
+body {
+    background-color: black;
+    color: yellow;
+    font-family: 'Star Jedi', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Efekt gwiazd */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url('/images/stars.jpg') repeat top center;
+    z-index: -1;
+}
+
+/* Nagłówki */
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Większy odstęp między sekcjami */
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 16px;
+    flex-wrap: nowrap;      /* jedna linia; jak chcesz zawijanie -> 'wrap' */
+    overflow-x: auto;       /* przewijanie poziome, jeśli się nie mieści */
+    padding: 6px 8px 12px;
+}
+
+
+/* Odstęp między drużynami */
+.team-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 35px; /* większy odstęp pod drużyną zwycięzcy */
+}
+
+/* Karty postaci */
+.character-card {
+    width: 150px;
+    height: 230px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid yellow;
+    border-radius: 10px;
+    box-shadow: 0 0 20px yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.character-card:hover {
+    transform: scale(1.05);
+}
+
+.character-name, .character-level {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+}
+
+/* Kolorowanie zwycięzcy i przegranego */
+.winner {
+    color: lime;
+}
+
+.loser {
+    color: red;
+}
+
+/* Przyciski */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 2px solid yellow;
+    border-radius: 5px;
+    background: transparent;
+    color: yellow;
+    font-family: 'Star Jedi', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+    background: yellow;
+    color: black;
+}
+
+.team-section {
+    margin: 18px 0 22px;
+}
+
+.team-title,
+.team-name {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    color: yellow;
+    text-shadow: 0 0 10px yellow, 0 0 18px rgba(255,255,255,.7);
+}

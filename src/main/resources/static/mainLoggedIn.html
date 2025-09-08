@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+</head>
+<body>
+<div class="stars"></div>
+<div class="logo-title">Star Wars Skirmishes</div>
+<h1 id="greeting">Welcome!</h1>
+
+<button class="btn" onclick="window.location.href='/teams.html'">Your teams</button>
+<button class="btn" onclick="window.location.href='/createTeam.html'">Create team</button>
+<button class="btn" onclick="window.location.href='/characterList.html'">Character list</button>
+<button class="btn" onclick="window.location.href='/users.html'">Begin battle</button>
+<button class="btn" onclick="window.location.href='/finishedBattles.html'">Completed battles</button>
+<button class="btn" id="logoutBtn">Log out</button>
+
+<script type="module">
+    import { apiJson, apiLogout } from "./api.js";
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const data = await apiJson('/swApi/auth/session-info');
+            document.getElementById('greeting').innerText = `Welcome, ${data.username}!`;
+        } catch {
+            window.location.href = '/main.html';
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try { await apiLogout(); } catch (e) { console.error(e); }
+            window.location.href = '/main.html';
+        });
+    });
+</script>
+</body>
+
+</html>

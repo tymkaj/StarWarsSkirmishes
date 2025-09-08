@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Wars Skirmishes</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+</head>
+<body>
+<div class="stars"></div>
+<div class="logo-title">Star Wars Skirmishes</div>
+<h1>Welcome!</h1>
+<p>Register or log in</p>
+
+<div class="btn-container">
+    <button class="btn" onclick="window.location.href='/register.html'">Register</button>
+    <button class="btn" onclick="window.location.href='/login.html'">Log in</button>
+</div>
+
+<script type="module">
+    import { api } from "./api.js";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        try {
+            const res = await api('/swApi/auth/session-info', {}, { redirectOn401: false });
+            if (res.ok) {
+                // mamy sesję → wejdź na stronę zalogowaną
+                window.location.href = '/mainLoggedIn.html';
+            } else {
+                // brak sesji (401) → NIC nie rób, zostań na main.html
+                // opcjonalnie: console.debug('No session', res.status);
+            }
+        } catch (err) {
+            // tu trafi np. 403 albo realny błąd sieci
+            console.warn('Error while checking session:', err);
+        }
+    });
+</script>
+
+
+
+</body>
+</html>
+

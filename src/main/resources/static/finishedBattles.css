@@ -1,0 +1,151 @@
+/* Tło i podstawy */
+body {
+    margin: 0;
+    background: black;
+    color: yellow;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    background: transparent url('/images/stars.jpg') repeat top center;
+    z-index: -1;
+}
+
+h1 {
+    margin: 20px 0 10px;
+    text-shadow: 0 0 10px yellow, 0 0 20px white;
+}
+
+/* Lista bitew */
+.battles-container {
+    width: min(1100px, 92vw);
+    margin: 0 auto 40px;
+    display: grid;
+    gap: 50px;
+}
+
+/* Karta jednej bitwy */
+.battle-card {
+    border: 2px solid yellow;
+    border-radius: 14px;
+    box-shadow: 0 0 16px yellow;
+    padding: 16px 16px 20px;
+    background: rgba(0,0,0,0.35);
+    text-align: left;
+}
+
+.battle-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.battle-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.badge {
+    display: inline-block;
+    border: 2px solid yellow;
+    border-radius: 999px;
+    padding: 4px 10px;
+    background: rgba(0,0,0,0.6);
+}
+
+/* Sekcja drużyn */
+.teams {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+@media (min-width: 680px) {
+    .teams { grid-template-columns: 1fr 1fr; }
+}
+
+.team-box {
+    border: 1px solid rgba(255,255,0,0.6);
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(0,0,0,0.25);
+}
+
+.team-box h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+/* Pasek kart postaci */
+.team {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+    overflow-x: visible;
+    justify-content: center;
+    padding-bottom: 6px;
+}
+
+.character-card {
+    width: 120px;
+    height: 170px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid yellow;
+    border-radius: 10px;
+    box-shadow: 0 0 12px yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .2s;
+}
+.character-card:hover { transform: scale(1.05); }
+
+.character-name, .character-level {
+    background: rgba(0,0,0,.7);
+    padding: 4px 6px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.winner { color: #00ff7b; } /* zielony dla zwycięzcy */
+.loser  { color: #ff4e4e; }  /* czerwony dla przegranego */
+
+/* Przyciski */
+.actions {
+    margin: 20px 0 40px;
+}
+.btn {
+    font-size: 1rem;
+    background: transparent;
+    color: yellow;
+    border: 2px solid yellow;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 0 8px yellow;
+    transition: .2s;
+}
+.btn:hover {
+    background: yellow;
+    color: black;
+}
+
+.team-section {
+    margin: 18px 0 22px;
+}
+
+.team-title,
+.team-name {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    color: yellow;
+    text-shadow: 0 0 10px yellow, 0 0 18px rgba(255,255,255,.7);
+}

@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,5 +25,6 @@ public class User {
     @Email
     private String email;
     @OneToMany(mappedBy = "user")
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     private List<Team> teams =  new ArrayList<>();
 }

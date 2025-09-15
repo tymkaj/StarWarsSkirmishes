@@ -3,6 +3,8 @@ package pl.coderslab.starwarsapp.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,8 @@ public class Team {
     private User user;
     @ManyToMany
     @Size(min = 4, max = 4)
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     private List<GameCharacter> characters =  new ArrayList<>();
+    @EqualsAndHashCode.Exclude
     private Boolean deleted = false;
 }

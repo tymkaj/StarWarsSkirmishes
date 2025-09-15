@@ -31,6 +31,24 @@ body {
     src: url('fonts/Starjhol.ttf') format('truetype');
 }
 
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.logo-link:link,
+.logo-link:visited,
+.logo-link:hover,
+.logo-link:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-link:focus-visible {
+    outline: 2px dashed #ffd60a;
+    outline-offset: 4px;
+}
 
 h1 {
     font-size: 4em;

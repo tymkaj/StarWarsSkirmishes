@@ -25,6 +25,43 @@ body {
     padding: 20px;
 }
 
+.logo-title {
+    font-family: 'Star Jedi', sans-serif;
+    font-size: 3rem;
+    color: yellow;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow:
+            0 0 10px yellow,
+            0 0 20px yellow,
+            0 0 30px #fff;
+    letter-spacing: 2px;
+}
+
+@font-face {
+    font-family: 'Star Jedi';
+    src: url('fonts/Starjhol.ttf') format('truetype');
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.logo-link:link,
+.logo-link:visited,
+.logo-link:hover,
+.logo-link:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-link:focus-visible {
+    outline: 2px dashed #ffd60a;
+    outline-offset: 4px;
+}
+
 #teamsContainer {
     display: flex;
     flex-direction: column;

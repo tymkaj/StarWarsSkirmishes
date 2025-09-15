@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,6 @@ public class Team {
     private User user;
     @ManyToMany
     @Size(min = 4, max = 4)
-    private List<GameCharacter> characters;
+    private List<GameCharacter> characters =  new ArrayList<>();
     private Boolean deleted = false;
 }

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,5 +23,5 @@ public class User {
     @Email
     private String email;
     @OneToMany(mappedBy = "user")
-    private List<Team> teams;
+    private List<Team> teams =  new ArrayList<>();
 }

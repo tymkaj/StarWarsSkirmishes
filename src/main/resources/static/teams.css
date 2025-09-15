@@ -61,11 +61,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: pointer;           /* wskazówka, że klikalne */
+    cursor: pointer;
     user-select: none;
 }
 
-/* ta sama karta, tylko większa na widoku detalu */
 .character-card--details {
     width: 300px;
     height: 420px;
@@ -164,10 +163,10 @@ body {
     justify-content: center;
     align-items: stretch;
     gap: 16px;
-    flex-wrap: nowrap;         /* jedna linia */
-    overflow-x: auto;          /* przewijanie, jeśli się nie mieści */
+    flex-wrap: nowrap;
+    overflow-x: auto;
     padding: 6px 8px 12px;
-    scrollbar-width: thin;     /* ładniejszy scroll w FF */
+    scrollbar-width: thin;
 }
 
 .team-section {

@@ -34,7 +34,7 @@ function renderBattles(battles) {
     }
 
     battles.forEach(b => {
-        // BattleDTO (wg wcześniejszej struktury):
+        // BattleDTO
         // { id, winner:UserDTO, loser:UserDTO, teamA:TeamDTO, teamB:TeamDTO, winnerTeam:TeamDTO }
 
         const winnerName = b.winner?.username ?? "Unknown";
@@ -44,13 +44,11 @@ function renderBattles(battles) {
         const teamB = b.teamB || null;
         const winnerTeam = b.winnerTeam || null;
 
-        // wyznacz drużynę przegranego (druga względem winnerTeam)
         const loserTeam = (winnerTeam?.id === teamA?.id) ? teamB : teamA;
 
         const card = document.createElement("div");
         card.className = "battle-card";
 
-        // header
         const header = document.createElement("div");
         header.className = "battle-header";
         header.innerHTML = `
@@ -64,7 +62,6 @@ function renderBattles(battles) {
     `;
         card.appendChild(header);
 
-        // drużyny
         const teamsWrap = document.createElement("div");
         teamsWrap.className = "teams";
 
@@ -123,11 +120,11 @@ function renderPage(p) {
     </div>
   `;
 
-    // ustaw aktualne wartości selectów
+    // set current select values
     actions.querySelector('#fFilter').value = filter;
     actions.querySelector('#fDir').value = dir;
 
-    // zmiana filtrów/sortu resetuje na stronę 0 i przeładowuje
+    // changing filtering/sorting sets the page to 0 and reloads
     actions.querySelector('#fFilter').addEventListener('change', async e => {
         filter = e.target.value; page = 0; await loadBattles();
     });
@@ -135,7 +132,6 @@ function renderPage(p) {
         dir = e.target.value; page = 0; await loadBattles();
     });
 
-    // paginacja
     const prev = document.getElementById('prevBtn');
     const next = document.getElementById('nextBtn');
 

@@ -24,14 +24,13 @@
         try {
             const res = await api('/swApi/auth/session-info', {}, { redirectOn401: false });
             if (res.ok) {
-                // mamy sesję → wejdź na stronę zalogowaną
+                // valid session exists → go to logged in page
                 window.location.href = '/mainLoggedIn.html';
             } else {
-                // brak sesji (401) → NIC nie rób, zostań na main.html
-                // opcjonalnie: console.debug('No session', res.status);
+                // no valid session (401) -> stay on main.html
             }
         } catch (err) {
-            // tu trafi np. 403 albo realny błąd sieci
+            // 403 or network errors
             console.warn('Error while checking session:', err);
         }
     });

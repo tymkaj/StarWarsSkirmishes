@@ -7,9 +7,9 @@ import { apiCharacter } from "./api.js";
 
     againBtn.addEventListener("click", () => {
     localStorage.removeItem("battleResult");
-    // wyczyść ewentualne resztki z poprzedniej selekcji
+    // clear any remaining data from previous selection
     sessionStorage.clear();
-    // idź od razu do wyboru przeciwnika
+    // go to choosing your opponent
     window.location.href = "users.html";
 });
 
@@ -19,12 +19,12 @@ import { apiCharacter } from "./api.js";
     window.location.href = "mainLoggedIn.html";
 });
 
-    // 1) Pobierz wynik z localStorage
+    // 1) Get result from localStorage
     const raw = localStorage.getItem("battleResult");
     let battle = null;
     try { battle = raw ? JSON.parse(raw) : null; } catch { battle = null; }
 
-    // 2) Jeśli brak danych lub backend zwrócił błąd – pokaż komunikat
+    // 2) If no data or an error occurred, show info:
     if (!battle || typeof battle !== "object" || (typeof battle.status === "number" && battle.status >= 400)) {
     summary.innerHTML = `
           <p>No valid battle data.</p>
@@ -33,7 +33,7 @@ import { apiCharacter } from "./api.js";
     return;
 }
 
-    // 3) Pola zgodnie z Twoim BattleDTO
+    // 3) Fields according to BattleDTO
     const winnerUser = battle.winner || {};
     const loserUser  = battle.loser  || {};
     const winnerName = winnerUser.username || "Nieznany";
@@ -43,7 +43,7 @@ import { apiCharacter } from "./api.js";
     const teamB = battle.teamB || {};
     const winnerTeam = battle.winnerTeam || {};
 
-    // Wyznacz przegraną drużynę: jeśli id pasuje do teamA → przegrany to teamB; w przeciwnym razie teamA
+    // Choose losingTeam: if id matches teamA → loser is teamB; oterwise loser is teamA
     let loserTeam = {};
     if (winnerTeam && teamA && teamB) {
     const aId = teamA.id

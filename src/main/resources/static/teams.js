@@ -24,7 +24,7 @@ try {
 async function fetchTeams() {
     const selectedUser = JSON.parse(localStorage.getItem("selectedUser")); // przeglądany przeciwnik
     if (selectedUser) {
-        // Pobierz drużyny przeciwnika
+        // load opponent's teams
         const res = await apiJson("/swApi/teams/userTeams", {
             method: "POST",
             credentials: "include",
@@ -35,7 +35,7 @@ async function fetchTeams() {
             `Teams of user: ${selectedUser.username}`;
         renderTeams(res, {mode: "opponent", selectedUser});
     } else {
-        // Pobierz nasze drużyny
+        // load user's teams
         const res = await apiJson("/swApi/teams")
         renderTeams(res, {mode: "mine"});
     }
@@ -50,7 +50,6 @@ function renderTeams(teams, opts = { mode: "mine" }) {
     const opponentTeamId = sessionStorage.getItem("battle.opponentTeamId");
 
     teams.forEach(team => {
-        // 1) sekcja + tytuł
         const section = document.createElement('div');
         section.className = 'team-section';
 
@@ -61,7 +60,7 @@ function renderTeams(teams, opts = { mode: "mine" }) {
         const teamRow = document.createElement('div');
         teamRow.className = 'team-row';
 
-        // Renderowanie postaci
+        // character rendering
         team.characters.forEach(character => {
             const card = document.createElement("div");
             card.className = "character-card";
@@ -79,7 +78,7 @@ function renderTeams(teams, opts = { mode: "mine" }) {
             card.appendChild(level);
             teamRow.appendChild(card);
 
-            // Klik w kartę -> szczegóły postaci
+            // Clicking the card leads to character's details
             card.addEventListener("click", async () => {
                 const res = await apiJson("/swApi/characters/details", {
                     method: "POST",
@@ -95,7 +94,6 @@ function renderTeams(teams, opts = { mode: "mine" }) {
 
         container.appendChild(teamRow);
 
-        // Przyciski pod drużyną
         const actions = document.createElement("div");
         actions.style.display = "flex";
         actions.style.justifyContent = "center";
@@ -132,7 +130,7 @@ function renderTeams(teams, opts = { mode: "mine" }) {
             btn.addEventListener("click", () => {
                 sessionStorage.setItem("battle.opponentUserId", String(opts.selectedUser.id));
                 sessionStorage.setItem("battle.opponentTeamId", String(team.id));
-                localStorage.removeItem("selectedUser"); // wracamy do naszych drużyn
+                localStorage.removeItem("selectedUser"); // back to user's teams
                 window.location.href = "teams.html?battle=1";
             });
         } else {

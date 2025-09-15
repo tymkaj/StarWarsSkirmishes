@@ -73,14 +73,14 @@ public class AuthService {
                     .body(Map.of("error", "Invalid login or password"));
         }
 
-        // 1) Zbuduj Authentication
+        // 1) build Authentication
         var auth = new UsernamePasswordAuthenticationToken(
                 request.getUsername(),
                 null,
                 List.of(new SimpleGrantedAuthority("ROLE_USER"))
         );
 
-        // 2) Zapisz do SecurityContext (pamiętaj: w sesji!)
+        // 2) Save to SecurityContext (in session)
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(auth);
         SecurityContextHolder.setContext(context);
@@ -88,10 +88,10 @@ public class AuthService {
         new HttpSessionSecurityContextRepository()
                 .saveContext(context, httpRequest, httpResponse);
 
-        // 3) (ważne) Migracja ID sesji – ochrona przed session fixation
+        // 3) Session ID migration - to avoid session fixation
         httpRequest.changeSessionId();
 
-        // 4) Dodatkowe atrybuty aplikacyjne (opcjonalnie)
+        // 4) Additional attributes
         HttpSession session = httpRequest.getSession(false); // po changeSessionId nadal istnieje
         if (session != null) {
             session.setAttribute("username", request.getUsername());
@@ -100,15 +100,13 @@ public class AuthService {
 
         csrfTokenRepository.saveToken(null, httpRequest, httpResponse);
 
-        // 200 OK bez treści / lub JSON wg potrzeb
         return ResponseEntity.ok().build();
     }
 
     public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
-        // 1) Wyczyść kontekst
+
         SecurityContextHolder.clearContext();
 
-        // 2) Unieważnij sesję (usunie też _csrf z HttpSessionCsrfTokenRepository)
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();

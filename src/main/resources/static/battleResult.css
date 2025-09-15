@@ -7,7 +7,6 @@ body {
     padding: 0;
 }
 
-/* Efekt gwiazd */
 .stars {
     position: fixed;
     top: 0;
@@ -18,13 +17,11 @@ body {
     z-index: -1;
 }
 
-/* Nagłówki */
 h1, h2, h3 {
     margin: 0;
     padding: 0;
 }
 
-/* Większy odstęp między sekcjami */
 h2 {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -45,8 +42,6 @@ h3 {
     padding: 6px 8px 12px;
 }
 
-
-/* Odstęp między drużynami */
 .team-row {
     display: flex;
     justify-content: center;
@@ -55,7 +50,6 @@ h3 {
     margin-bottom: 35px; /* większy odstęp pod drużyną zwycięzcy */
 }
 
-/* Karty postaci */
 .character-card {
     width: 150px;
     height: 230px;
@@ -80,7 +74,6 @@ h3 {
     padding: 5px;
 }
 
-/* Kolorowanie zwycięzcy i przegranego */
 .winner {
     color: lime;
 }
@@ -89,7 +82,6 @@ h3 {
     color: red;
 }
 
-/* Przyciski */
 .btn {
     display: inline-block;
     padding: 10px 20px;

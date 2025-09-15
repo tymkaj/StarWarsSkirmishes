@@ -8,6 +8,5 @@ import pl.coderslab.starwarsapp.entity.User;
 public interface UserMapper {
 
     UserDTO UserToUserDTO(User user);
-    User UserDTOToUser(UserDTO userDTO);
 
 }

@@ -10,8 +10,6 @@ import java.util.List;
 public interface TeamMapper {
 
     TeamDTO teamToTeamDTO(Team team);
-    Team teamDTOToTeam(TeamDTO teamDTO);
     List<TeamDTO> teamsToTeamDTO(List<Team> teams);
-    List<Team> teamDTOsToTeam(List<TeamDTO> teamDTOs);
 
 }

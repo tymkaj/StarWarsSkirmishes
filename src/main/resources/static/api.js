@@ -1,6 +1,6 @@
 // api.js (module)
 
-// POST/PUT/PATCH/DELETE wymagają CSRF
+// POST/PUT/PATCH/DELETE require CSRF
 function needsCsrf(method = 'GET') {
     const m = (method || '').toUpperCase();
     return m !== 'GET' && m !== 'HEAD' && m !== 'OPTIONS';
@@ -9,7 +9,7 @@ function needsCsrf(method = 'GET') {
 let cachedCsrf = null;
 
 async function fetchCsrf() {
-    // GET, który tworzy token w sesji i wystawia go w nagłówku oraz w JSON
+    // GET, creates a token in session and returns it in header and JSON
     const res = await fetch('/swApi/auth/csrf', { credentials: 'include' });
     cachedCsrf = res.headers.get('X-CSRF-TOKEN');
     if (!cachedCsrf) {
@@ -38,7 +38,7 @@ export async function api(path, options = {}, behaviour = { redirectOn401: true 
 
     let res = await fetch(path, { credentials: 'include', ...options, headers });
 
-    // „miękki” retry: jeśli 403 i brak/expired token – pobierz świeży i spróbuj raz jeszcze
+    // soft retry: if 403 and null/expired token – get a fresh one and retry
     if (res.status === 403 && needsCsrf(options.method)) {
         await fetchCsrf();
         if (cachedCsrf) {

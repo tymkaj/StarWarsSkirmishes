@@ -10,8 +10,6 @@ import java.util.List;
 public interface GameCharacterMapper {
 
     GameCharacterDTO gameCharacterToGameCharacterDTO(GameCharacter gameCharacter);
-    GameCharacter gameCharacterDTOToGameCharacter(GameCharacterDTO gameCharacterDTO);
     List<GameCharacterDTO> gameCharacterListToGameCharacterDTOList(List<GameCharacter> gameCharacterList);
-    List<GameCharacter> gameCharacterDTOListToGameCharacterList(List<GameCharacterDTO> gameCharacterDTOList);
 
 }

@@ -10,8 +10,6 @@ import java.util.List;
 public interface BattleMapper {
 
     BattleDTO battleToBattleDTO(Battle battle);
-    Battle battleDTOToBattle(BattleDTO battleDTO);
     List<BattleDTO> battleListToBattleDTOList(List<Battle> battleList);
-    List<Battle> battleDTOListToBattleList(List<BattleDTO> battleDTOList);
 
 }

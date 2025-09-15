@@ -1,4 +1,3 @@
-/* Tło i podstawy */
 body {
     margin: 0;
     background: black;
@@ -19,7 +18,6 @@ h1 {
     text-shadow: 0 0 10px yellow, 0 0 20px white;
 }
 
-/* Lista bitew */
 .battles-container {
     width: min(1100px, 92vw);
     margin: 0 auto 40px;
@@ -27,7 +25,6 @@ h1 {
     gap: 50px;
 }
 
-/* Karta jednej bitwy */
 .battle-card {
     border: 2px solid yellow;
     border-radius: 14px;
@@ -59,7 +56,6 @@ h1 {
     background: rgba(0,0,0,0.6);
 }
 
-/* Sekcja drużyn */
 .teams {
     display: grid;
     grid-template-columns: 1fr;
@@ -81,7 +77,6 @@ h1 {
     font-size: 1rem;
 }
 
-/* Pasek kart postaci */
 .team {
     display: flex;
     gap: 12px;
@@ -115,10 +110,9 @@ h1 {
     text-align: center;
 }
 
-.winner { color: #00ff7b; } /* zielony dla zwycięzcy */
-.loser  { color: #ff4e4e; }  /* czerwony dla przegranego */
+.winner { color: #00ff7b; }
+.loser  { color: #ff4e4e; }
 
-/* Przyciski */
 .actions {
     margin: 20px 0 40px;
 }

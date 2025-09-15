@@ -2,15 +2,14 @@ import { api, apiJson, apiCharacter } from "./api.js";
 
 await api('/swApi/auth/session-info');
 
-let q = "";          // tekst z inputa
+let q = "";          // input text
 let page = 0;        // 0-based
-const size = 10;     // ile kart na stronę
+const size = 10;     // how many cards per page
 
 const container = document.getElementById("charactersContainer");
 const searchInput = document.getElementById("searchInput");
 const pagerBox = document.querySelector(".pager");
 
-// delegacja klików w karty – rejestrujemy raz
 container.addEventListener("click", onCharacterClick);
 
 // debounce 300 ms
@@ -27,7 +26,6 @@ searchInput.addEventListener("input", () => {
 await loadCharacters();
 
 async function loadCharacters() {
-    // zawsze używamy endpointu search – pusta fraza zwróci wszystko
     const url = `/swApi/characters/search?q=${encodeURIComponent(q)}&page=${page}&size=${size}`;
     const data = await apiJson(url);
 
@@ -72,7 +70,6 @@ function renderCharacters(characters = []) {
 }
 
 function renderPage(p) {
-    // p: PageDTO z backendu
     pagerBox.innerHTML = `
     <br>
     <button class="btn" id="prevBtn" ${p.hasPrev ? "" : "disabled"}>Prev</button>

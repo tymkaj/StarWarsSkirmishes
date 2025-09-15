@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
         return pd;
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class) // zły JSON
+    @ExceptionHandler(HttpMessageNotReadableException.class) // invalid JSON
     public ProblemDetail handleNotReadable(HttpMessageNotReadableException ex) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         pd.setTitle("Malformed JSON");
@@ -69,7 +69,7 @@ public class GlobalExceptionHandler {
         return pd;
     }
 
-    @ExceptionHandler(Exception.class) // ostatnia linia obrony
+    @ExceptionHandler(Exception.class) // last line of defense
     public ProblemDetail handleOther(Exception ex) {
         ProblemDetail pd = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         pd.setTitle("Server error");

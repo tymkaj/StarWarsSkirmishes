@@ -1,7 +1,6 @@
 import { api } from "./api.js";
 
 try {
-    // sprawdzamy sesję
     const sessionRes = await api("/swApi/auth/session-info");
     if (!sessionRes.ok) {
         window.location.href = "main.html";
@@ -9,14 +8,14 @@ try {
 
     const currentUser = await sessionRes.json();
 
-    // pobieramy listę użytkowników
+    // get a list of users
     const usersRes = await api("/swApi/users");
     if (!usersRes.ok) {
         throw new Error("Cannot load users");
     }
     const users = await usersRes.json();
 
-    // filtrujemy i renderujemy
+    // filtering and rendering, returns every user except us
     const filteredUsers = users.filter(u => u.username !== currentUser.username);
     renderUsers(filteredUsers);
 

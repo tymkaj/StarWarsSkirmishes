@@ -35,6 +35,7 @@ public class TeamService {
     private final UserRepository userRepository;
     private final GameCharacterRepository gameCharacterRepository;
 
+    @Transactional
     public ResponseEntity<List<TeamDTO>> getTeams(HttpServletRequest request) {
         HttpSession session = request.getSession();
         List<Team> teams = teamRepository.findAllByUserUsernameAndDeletedFalse(session.getAttribute("username").toString());
@@ -42,6 +43,7 @@ public class TeamService {
         return ResponseEntity.ok(teamsDTO);
     }
 
+    @Transactional
     public ResponseEntity<List<TeamDTO>> getUserTeams(UserDTO userDTO) {
         List<Team> teams = teamRepository.findAllByUserUsernameAndDeletedFalse(userDTO.getUsername());
         List<TeamDTO> teamsDTO = teamMapper.teamsToTeamDTO(teams);

@@ -31,8 +31,8 @@ export async function api(path, options = {}, behaviour = { redirectOn401: true 
     if (needsCsrf(options.method)) {
         await ensureCsrf();                           // PRIMING
         if (cachedCsrf) {
-            headers.set('X-CSRF-TOKEN', cachedCsrf);   // Spring 6 domyślna nazwa
-            headers.set('X-XSRF-TOKEN', cachedCsrf);   // opcjonalnie (kompat.)
+            headers.set('X-CSRF-TOKEN', cachedCsrf);   // Spring 6 default name
+            headers.set('X-XSRF-TOKEN', cachedCsrf);   // optional
         }
     }
 

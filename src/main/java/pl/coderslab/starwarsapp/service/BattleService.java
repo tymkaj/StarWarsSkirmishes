@@ -34,6 +34,7 @@ public class BattleService {
     private final TeamRepository teamRepository;
     private final BattleMapper battleMapper;
 
+    @Transactional
     public ResponseEntity<PageDTO<BattleDTO>> getAllBattles(HttpServletRequest request, int page, int size, BattleFilter filter,
                                                             Sort.Direction dir) {
 
